@@ -1,0 +1,21 @@
+body{
+    background: linear-gradient(to right, rgb(228, 130, 223), rgb(182, 229, 233));
+}
+form{
+    
+        background-image: url('public/bgurl.jpg'); 
+        background-size: cover;
+        background-position: center; 
+        background-repeat: no-repeat; 
+      
+}
+.label{
+    margin-left: 67px;
+    font-weight: bolder;
+    color: rgb(83, 83, 172) !important;;
+}
+.head{
+    font-size: 50px !important;
+    color: rgb(11, 116, 253);
+    text-shadow: 2px ,2px,3px black;
+}
