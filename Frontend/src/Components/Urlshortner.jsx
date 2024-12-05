@@ -19,7 +19,7 @@ export const Urlshortner = () => {
     setError('');
     setCopySuccess('');
     
-    // Simulate URL shortening by just appending a mock string
+    
     const mockShortenedUrl = `https://short.ly/${btoa(longUrl).slice(0, 6)}`;
     
     setShortUrl(mockShortenedUrl);
@@ -29,7 +29,7 @@ export const Urlshortner = () => {
     navigator.clipboard.writeText(shortUrl)
       .then(() => {
         setCopySuccess('URL copied to clipboard!');
-        setTimeout(() => setCopySuccess(''), 3000); // Clear success message after 3 seconds
+        setTimeout(() => setCopySuccess(''), 3000); 
       })
       .catch(() => {
         setError('Failed to copy the URL');
