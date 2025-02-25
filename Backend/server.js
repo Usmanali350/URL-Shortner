@@ -12,7 +12,7 @@ app.use(
   })
 );
 
-// Home route to check connection
+
 app.get('/', async (req, res) => {
   try {
     const db = await connectToDatabase();
@@ -23,8 +23,8 @@ app.get('/', async (req, res) => {
   }
 });
 
-// POST route to shorten a URL
-app.post('/api/MyDataBase', async (req, res) => {
+
+app.post('/api/UrlShortener', async (req, res) => {
   try {
     const db = await connectToDatabase();
     const url = req.body.url;
@@ -33,11 +33,11 @@ app.post('/api/MyDataBase', async (req, res) => {
       return res.status(400).json({ message: 'Invalid URL format' });
     }
 
-    const token = shortid.generate(); // Generate token
-    const urlCollection = db.collection('URL');
-    const result = await urlCollection.insertOne({ url, token });
+    const token = shortid.generate(); 
+    const urlsCollection = db.collection('Urls');
+    const result = await urlsCollection.insertOne({ url, token });
 
-    console.log('Inserted URL:', result); // Debugging output
+    console.log('Inserted URL:', result); 
 
     const shortUrl = `http://localhost:${PORT}/u/${token}`;
     res.status(200).json({
@@ -51,21 +51,16 @@ app.post('/api/MyDataBase', async (req, res) => {
     res.status(500).json({ message: 'Error creating shortened URL', error });
   }
 });
-
-
- // <-- Correctly closing the POST route here
-
-// GET route to retrieve the original URL and redirect
 app.get('/u/:token', async (req, res) => {
   try {
     const db = await connectToDatabase();
     const token = req.params.token;
     console.log('Searching for Token:', token);
 
-    const urlCollection = db.collection('URL');
-    console.log('Connected Collection:', urlCollection.namespace);
+    const urlsCollection = db.collection('Urls');
+    console.log('Connected Collection:', urlsCollection.namespace);
 
-    const urlData = await urlCollection.findOne({ token: token });
+    const urlData = await urlsCollection.findOne({ token: token });
     console.log('Query Result:', urlData);
 
     if (!urlData) {

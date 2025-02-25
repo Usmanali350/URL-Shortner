@@ -7,7 +7,7 @@ export const Urlshortner = () => {
   const [error, setError] = useState('');
   const [copySuccess, setCopySuccess] = useState('');
 
-  const backendUrl = 'http://localhost:9000/api/MyDataBase'; // Update with your backend URL
+  const backendUrl = 'http://localhost:9000/api/UrlShortener'; 
 
   const handleInputChange = (e) => {
     setLongUrl(e.target.value);
